@@ -1,11 +1,11 @@
 import java.util.Map;
 
-public class Task implements ITask{
+public class UrgentTask implements ITask{
     private String task;
     private Boolean isComplete;
     private Map<String, Boolean> taskList;
 
-    public Task(String task, Boolean isComplete){
+    public UrgentTask(String task, Boolean isComplete){
         this.task = task;
         this.isComplete = isComplete;
     }
@@ -42,5 +42,9 @@ public class Task implements ITask{
 
     public String getTask(){
         return task;
+    }
+
+    public void isUrgent(){
+        System.out.println("This task is urgent");
     }
 }

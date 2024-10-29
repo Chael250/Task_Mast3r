@@ -2,7 +2,7 @@ import java.util.*;
 
 public class TaskManager {
     private int index = 1;
-    private Map<Integer, Task> taskList;
+    private Map<Integer, ITask> taskList;
     private final Scanner scan = new Scanner(System.in);
 
     public TaskManager(){
@@ -10,10 +10,19 @@ public class TaskManager {
     }
 
     public void addTask(String task){
-        Task tasksI = new Task(task, false);
-        var tasks = taskList.put(index, tasksI);
-        System.out.println("Task added at " + index + " : " + task);
-        index++;
+        System.out.println("Is this task urgent? [yes-no]: ");
+        String isUrgent = scan.nextLine();
+        if(isUrgent.equalsIgnoreCase("yes")){
+            UrgentTask taskII = new UrgentTask(task, false);
+            var tasks = taskList.put(index, taskII);
+            System.out.println("Task added at " + index + " : " + task);
+            index++;
+        } else {
+            Task tasksI = new Task(task, false);
+            var tasks = taskList.put(index, tasksI);
+            System.out.println("Task added at " + index + " : " + task);
+            index++;
+        }
     }
 
     public void removeTask(int index){
@@ -26,12 +35,12 @@ public class TaskManager {
 
     public void viewTask(int index){
         if(index != 0){
-            Task task = taskList.get(index);
+            ITask task = taskList.get(index);
             if(task != null){
                 System.out.println("The task " + task.getTheTask() + " : " + task.isCompleted());
             }
         } else {
-            for(Map.Entry<Integer, Task> entry : taskList.entrySet()) {
+            for(Map.Entry<Integer, ITask> entry : taskList.entrySet()) {
                 System.out.println("The task " + entry.getKey() + " : " + entry.getValue().getTheTask());
             }
         }

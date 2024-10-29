@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -27,50 +28,65 @@ public class Main {
             result = scan.nextInt();
             scan.nextLine();
 
-
             switch(result) {
                 //ADDING TO LIST
                 case 1:
-                    Map<String, Boolean> map = new HashMap<>();
+                    try {
+                        Map<String, Boolean> map = new HashMap<>();
 
-                    System.out.println("Good Choice");
-                    System.out.print("Enter the task: ");
-                    String task = scan.nextLine();
-                    taskManager.addTask(task);
+                        System.out.println("Good Choice");
+                        System.out.print("Enter the task: ");
+                        String task = scan.nextLine();
+                        taskManager.addTask(task);
 
-                    break;
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Enter a number");
+                    }
 
-                // REMOVE T0 LIST
+                    // REMOVE T0 LIST
                 case 2:
-                    System.out.println("Good Choice");
-                    System.out.println("Enter the number to remove:");
-                    int valueRemove = scan.nextInt();
-                    scan.nextLine();
-                    taskManager.removeTask(valueRemove);
+                    try {
+                        System.out.println("Good Choice");
+                        System.out.println("Enter the number to remove:");
+                        int valueRemove = scan.nextInt();
+                        scan.nextLine();
+                        taskManager.removeTask(valueRemove);
 
-                    break;
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Enter a number");
+                    }
 
                 case 3:
-                    System.out.println("Good Choice");
-                    System.out.println("Enter value to get (Type 0 to view all): ");
-                    int valueView = scan.nextInt();
-                    scan.nextLine();
+                    try {
+                        System.out.println("Good Choice");
+                        System.out.println("Enter value to get (Type 0 to view all): ");
+                        int valueView = scan.nextInt();
+                        scan.nextLine();
 
-                    taskManager.viewTask(valueView);
+                        taskManager.viewTask(valueView);
 
-                    break;
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Enter a number");
+                    }
 
                 case 4:
-                    System.out.println("Good Choice");
-                    System.out.println("Enter the number of the task to edit: ");
-                    int value = scan.nextInt();
-                    scan.nextLine();
-                    System.out.println("Enter the task to replace: ");
-                    var taskToEdit = scan.nextLine();
+                    try {
+                        System.out.println("Good Choice");
+                        System.out.println("Enter the number of the task to edit: ");
+                        int value = scan.nextInt();
+                        scan.nextLine();
+                        System.out.println("Enter the task to replace: ");
+                        var taskToEdit = scan.nextLine();
 
-                    taskManager.editTask(value, taskToEdit);
+                        taskManager.editTask(value, taskToEdit);
 
-                    break;
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Enter a number");
+                    }
 
                 case 5:
                     System.out.println("GoodBye, See you next time ;)");
